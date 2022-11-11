@@ -263,3 +263,27 @@ int median(int *tabla, int ip, int iu,int *pos)
   *pos = ip;
   return 0;
 }
+
+int median_avg(int *tabla, int ip, int iu, int *pos)
+{
+  if (!tabla || !pos)
+    return ERR;
+  *pos = (ip + iu)/2;
+  return 0;
+}
+
+int median_stat(int *tabla, int ip, int iu, int *pos)
+{
+  int med;
+
+  med = (ip + iu)/2;
+  if (!tabla || !pos)
+    return ERR;
+  if (tabla[ip] < tabla[iu] && tabla[ip] > tabla[med] || tabla[ip] > tabla[iu] && tabla[ip] < tabla[med])
+    *pos = ip;
+  else if (tabla[iu] < tabla[ip] && tabla[iu] > tabla[med] || tabla[iu] > tabla[ip] && tabla[iu] < tabla[med])
+    *pos = iu;
+  else
+    *pos = med;
+  return 0;
+}
